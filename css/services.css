@@ -1,0 +1,77 @@
+/* services.css */
+
+.services-section {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.services-section h2 {
+  font-family: 'Bangers', cursive;
+  font-size: 2.5rem;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
+
+.services-section .intro {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--white);
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: var(--gunmetal);
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  border-color: var(--accent);
+}
+
+.service-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  font-family: 'Overlock Bold', sans-serif;
+  font-size: 1.6rem;
+  color: var(--pink);
+  margin-bottom: 0.5rem;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .services-section h2 {
+    font-size: 2rem;
+  }
+
+  .service-card {
+    padding: 1rem;
+  }
+}

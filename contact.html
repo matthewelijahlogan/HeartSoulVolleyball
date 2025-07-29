@@ -1,0 +1,94 @@
+<!--contact.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Heart & Soul Training</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+  <header>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="coaches.html">Coaches</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <hr class="section-divider">
+
+  <main class="hero">
+    <div class="hero-background">
+      <div class="hero-logo">
+        <img src="img/club_logo.png" alt="Club Logo">
+      </div>
+
+      <div class="container">
+        <div class="hero-text">
+          <h1>Contact Us</h1>
+          <p>We’re here to help! Please fill out the form below and we will get back to you shortly.</p>
+        </div>
+
+        <form class="contact-form"
+              action="https://formsubmit.co/jlcvb20@gmail.com"
+              method="POST"
+              novalidate>
+          <input type="text" name="_honey" style="display: none" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://matthewelijahlogan.github.io/Heart-Soul/thankyou.html" />
+
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+          <label for="age">Age</label>
+          <input type="text" id="age" name="age" placeholder="Your age" required />
+
+          <label for="school">School</label>
+          <input type="text" id="school" name="school" placeholder="(optional)" />
+
+          <label for="position">Position</label>
+          <input type="text" id="position" name="position" placeholder="(optional)" />
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(optional)" />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+
+        <section class="contact-info">
+          <h3>Service Location</h3>
+          <p>Cambria Avenue<br>Connellsville, PA 15425</p>
+
+          <h3>Contact Details</h3>
+          <p>Phone: (724) 557-0329<br>Email: jlcvb20@gmail.com</p>
+
+          <h3>Follow Us</h3>
+          <p>
+            <a href="#" aria-label="Facebook">Facebook</a> |
+            <a href="#" aria-label="Twitter">Twitter</a> |
+            <a href="#" aria-label="Instagram">Instagram</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <hr class="section-divider">
+
+  <footer>
+    <p>&copy; 2025 Heart & Soul Training. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

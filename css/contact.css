@@ -1,0 +1,143 @@
+/*css/contact.css */
+
+.container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  color: var(--pink);
+}
+
+.hero-logo {
+  max-width: 300px;
+  width: 80%;
+  margin: 0 auto 2rem;
+}
+
+.hero-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.hero-text h1 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 2.5rem;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: var(--pink);
+}
+
+/* === Contact Form === */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--charcoal);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--pink);
+  border-radius: 6px;
+  background-color: var(--white);
+  color: var(--gunmetal);
+  font-family: 'Overlock', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.contact-form button.btn-primary {
+  max-width: 200px;
+  align-self: center;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 700;
+  background-color: var(--pink);
+  color: var(--white);
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-form button.btn-primary:hover {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+/* === Contact Info === */
+.contact-info {
+  margin-top: 3rem;
+  background-color: var(--white);
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  color: var(--gunmetal);
+  text-align: center;
+}
+
+.contact-info h3 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--pink);
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--charcoal);
+}
+
+.contact-info a {
+  color: var(--pink);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover,
+.contact-info a:focus {
+  color: var(--accent);
+  outline: none;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .container {
+    margin: 2rem 1rem;
+    padding: 0;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .contact-form button.btn-primary {
+    max-width: 100%;
+  }
+}

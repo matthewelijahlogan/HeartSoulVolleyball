@@ -1,0 +1,128 @@
+/* coaches/coaches.css */
+
+/* Reset & inherit base font */
+body {
+  font-family: 'Overlock', sans-serif;
+  background-color: var(--gunmetal);
+  color: var(--white);
+  margin: 0;
+  padding: 0;
+}
+
+.club-title {
+  font-size: 2rem;
+  font-family: 'Overlock Bold', cursive;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Container for profile cards */
+.coach-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Profile card styling */
+.coach-card {
+  background-color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.8s ease;
+}
+
+.coach-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 166, 201, 0.5);
+}
+
+/* Coach image */
+.coach-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 4px solid var(--pink);
+}
+
+/* Coach info */
+.coach-info {
+  padding: 1.5rem;
+}
+
+.coach-name {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 2rem;
+  color: var(--pink);
+  margin-bottom: 0.5rem;
+}
+
+.coach-role {
+  font-size: 1.2rem;
+  color: var(--white);
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+
+.coach-bio {
+  font-family: 'Overlock', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+/* Fancy divider */
+.coach-divider {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(to right, var(--pink), var(--white), var(--pink));
+  margin: 2rem 0;
+  border: none;
+  animation: slideIn 0.7s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .coach-info {
+    padding: 1rem;
+  }
+
+  .coach-card img {
+    height: 200px;
+  }
+
+  .coach-name {
+    font-size: 1.6rem;
+  }
+
+  .coach-role {
+    font-size: 1rem;
+  }
+} 

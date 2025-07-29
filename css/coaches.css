@@ -1,0 +1,77 @@
+/* css/coaches.css */
+.hero-section {
+  background: linear-gradient(to bottom, #ffecd2, #fcb69f); /* adjust as needed */
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.hero-section h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+
+.coach-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.coach-card {
+  background-color: var(--gunmetal);
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coach-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  border-color: var(--accent);
+}
+
+.coach-card img {
+  width: 60%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.coach-card h3 {
+  font-family: 'Overlock Bold', sans-serif;
+  font-size: 1.6rem;
+  color: var(--pink);
+  margin-bottom: 0.5rem;
+}
+
+.coach-card p {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .coach-card {
+    padding: 1rem;
+  }
+
+  .coach-card img {
+    width: 70%;
+  }
+
+  .coach-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .coach-card p {
+    font-size: 0.95rem;
+  }
+}
