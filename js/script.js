@@ -1,4 +1,5 @@
 /* js/script.js */
+
 function toggleMenu() {
   const menu = document.getElementById('dropdownMenu');
   menu.classList.toggle('show');
@@ -11,3 +12,26 @@ function toggleMenu() {
     });
   }
 }
+
+// Testimonial Carousel Auto-Rotate
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".carousel-slide");
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Initialize the first slide
+  showSlide(currentSlide);
+
+  // Change slide every 4 seconds
+  setInterval(nextSlide, 4000);
+});
