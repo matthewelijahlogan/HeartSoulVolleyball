@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" >
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Clinics & Camps | Heart & Soul Training</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="services_css/clinics_camps.css">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="services_css/clinics.css" />
 </head>
 <body>
   <header>
-    <div class="logo" onclick="toggleMenu()">
-      <img src="../img/club_logo.png" alt="Club Logo">
-      <span class="club-title"></span>
-    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav id="dropdownMenu">
       <a href="../index.html">Home</a>
       <a href="../coaches.html">Coaches</a>
@@ -21,69 +18,96 @@
     </nav>
   </header>
 
-  <main class="service-container">
-    <h1>Clinics & Camps</h1>
+  <hr class="section-divider" />
 
-    <section class="service-description">
-      <p>
-        Join our competitive clinics and camps that challenge your skills and build lasting teamwork.
-      </p>
-      <img src="../img/clinics_placeholder.png" alt="Clinics & Camps">
-    </section>
+  <main class="hero">
+    <div class="hero-background">
+      <div class="hero-logo">
+        <img src="../img/club_logo.png" alt="Club Logo" />
+      </div>
 
-    <section class="service-details">
-      <h2>What We Offer</h2>
-      <ul>
-        <li>Skill development sessions</li>
-        <li>Peer to Peer competition</li>
-        <li>Professional coaching and strategy</li>
-        <li>One on One mentorship</li>
-      </ul>
-    </section>
+      <div class="container service-container">
+        <h1>Clinics & Camps</h1>
 
-    <section class="service-pricing">
-      <h2>Pricing</h2>
-      <p>For 1 athlete: $40 per session</p>
-      <p>For 2 athletes: $75 per session</p>
-    </section>
+        <section class="service-description">
+          <p>
+            Join our competitive clinics and camps that challenge your skills and build lasting teamwork.
+          </p>
+          <img src="../img/clinics_placeholder.png" alt="Clinics & Camps" />
+        </section>
 
-    <section class="service-signup">
-      <h2>Sign Up</h2>
-        <form class="contact-form" action="https://formsubmit.co/jlcvb20@gmail.com" method="POST" novalidate>
-          <!-- Honeypot to block bots -->
-          <input type="text" name="_honey" style="display:none">
+        <section class="service-details">
+          <h2>What We Offer</h2>
+          <ul>
+            <li>Skill development sessions</li>
+            <li>Peer-to-peer competition</li>
+            <li>Professional coaching and strategy</li>
+            <li>One-on-one mentorship</li>
+          </ul>
+        </section>
 
-          <!-- Disable CAPTCHA (optional) -->
-          <input type="hidden" name="_captcha" value="false">
+        <section class="service-pricing">
+          <h2>Pricing</h2>
+          <p>For 1 athlete: $40/session</p>
+          <p>For 2 athletes: $75/session</p>
+        </section>
 
-          <!-- Redirect after submit -->
-          <input type="hidden" name="_next" value="https://matthewelijahlogan.github.io/Heart-Soul/thankyou.html">
+        <section class="service-signup">
+          <h2>Sign Up</h2>
+          <form
+            class="contact-form"
+            action="https://formsubmit.co/jlcvb20@gmail.com"
+            method="POST"
+            novalidate
+          >
+            <!-- Honeypot to block bots -->
+            <input type="text" name="_honey" style="display:none" />
 
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
+            <!-- Disable CAPTCHA -->
+            <input type="hidden" name="_captcha" value="false" />
 
-          <label for="age">Age</label>
-          <input type="text" id="age" name="age" placeholder="Your age" required>
+            <!-- Redirect after submit -->
+            <input
+              type="hidden"
+              name="_next"
+              value="https://matthewelijahlogan.github.io/Heart-Soul/thankyou.html"
+            />
 
-          <label for="school">School</label>
-          <input type="text" id="school" name="school" placeholder="(optional)">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
 
-          <label for="position">Position</label>
-          <input type="text" id="position" name="position" placeholder="(optional)">
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" placeholder="Your age" required />
 
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <label for="school">School</label>
+            <input type="text" id="school" name="school" placeholder="(optional)" />
 
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="(optional)">
+            <label for="position">Position</label>
+            <input type="text" id="position" name="position" placeholder="(optional)" />
 
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-          <button type="submit" class="btn-primary">Send Message</button>
-        </form>
-    </section>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(optional)" />
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Write your message here..."
+              required
+            ></textarea>
+
+            <button type="submit" class="btn-primary">Send Message</button>
+          </form>
+        </section>
+      </div>
+    </div>
   </main>
+
+  <hr class="section-divider" />
 
   <footer>
     <p>&copy; 2025 Heart & Soul Training. All rights reserved.</p>
