@@ -72,6 +72,13 @@
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
+
+  background-image: url('../img/serving.jpg'); /* Replace with your actual image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 .testimonial-carousel h2 {
