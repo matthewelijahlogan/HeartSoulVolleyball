@@ -10,7 +10,7 @@
 .service-container h1 {
   font-family: 'Overlock Bold', cursive;
   font-size: 2.8rem;
-  color: var(--pink);
+  color: var(--orange);
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -27,7 +27,7 @@
   height: auto;
   margin: 0 auto 2rem auto;
   border-radius: 8px;
-  box-shadow: 0 0 15px var(--pink);
+  box-shadow: 0 0 15px var(--orange);
 }
 
 .service-details ul {
@@ -65,7 +65,7 @@
 .service-signup button {
   font-family: 'Overlock Bold', cursive;
   font-size: 1.2rem;
-  background-color: var(--pink);
+  background-color: var(--orange);
   color: var(--gunmetal);
   border: none;
   padding: 12px;

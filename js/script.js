@@ -32,6 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize the first slide
   showSlide(currentSlide);
 
-  // Change slide every 4 seconds
-  setInterval(nextSlide, 4000);
+  // Change slide every 10 seconds
+  setInterval(nextSlide, 10000);
 });

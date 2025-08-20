@@ -8,7 +8,6 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  background: linear-gradient(135deg, var(--sage), #1e2226);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,13 +52,13 @@
   font-size: 3rem;
   margin-bottom: 1rem;
   font-family: 'Overlock Bold', cursive;
-  color: var(--pink);
+  color: var(--orange);
 }
 
 .hero-text p {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
-  color: var(--pink);
+  color: var(--orange);
 }
 
 /* === Testimonial Carousel === */
@@ -72,8 +71,8 @@
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-
-  background-image: url('../img/serving.jpg'); /* Replace with your actual image path */
+  color: var(--darkblue);
+  background: linear-gradient(135deg, var(--royal) 0%, var(--orange) 70%, var(--darkblue) 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -84,7 +83,7 @@
 .testimonial-carousel h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: var(--pink);
+  color: var(--royal);
 }
 
 .carousel-container {
@@ -105,7 +104,7 @@
   transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
   font-style: italic;
   padding: 1rem;
-  background: white;
+  background: var(--off-white);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   pointer-events: none; /* prevent interaction on hidden slides */

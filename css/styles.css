@@ -1,13 +1,13 @@
 /* css/styles.css */
 
 :root {
-  --sage: #7ba68a;
-  --gunmetal: #2a3439;
+  --darkblue: #1e3a5f;
+  --royal: #275dff;
   --charcoal: #757575;
   --white: #FFFFFF;
-  --off_white: #F8F7F4;
-  --pink: #e0a8b7;
-  --accent: #cc7088;
+  --off-white: #F8F7F4;
+  --orange: #EBA41D;
+  --accent: #FFD700;
 }
 
 * {
@@ -38,8 +38,8 @@ html, body {
 
 body {
   font-family: 'Overlock', sans-serif;
-  background-color: var(--off_white);
-  color: var(--sage);
+  background-color: var(--darkblue);
+  color: var(--white);
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -50,8 +50,8 @@ body {
 
 header {
   width: 100%;
-  background-color: var(--off_white);
-  color: var(--sage);
+  background-color: var(--royal);
+  color: var(--orange);
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
@@ -76,7 +76,7 @@ header {
   background: none;
   border: none;
   font-size: 2rem;
-  color: var(--pink);
+  color: var(--orange);
   cursor: pointer;
   z-index: 1100;
 }
@@ -86,7 +86,7 @@ nav {
   top: 100%;
   right: 0;
   transform: translateX(100%);
-  background-color: var(--pink);
+  background-color: var(--orange);
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -100,17 +100,17 @@ nav.show {
 }
 
 nav a {
-  color: var(--gunmetal);
+  color: var(--darkblue);
   text-decoration: none;
   padding: 1rem;
-  border-bottom: 1px solid var(--gunmetal);
+  border-bottom: 1px solid var(--darkblue);
   text-align: center;
   transition: all 0.2s ease;
 }
 
 nav a:hover {
-  background-color: var(--white);
-  color: var(--accent);
+  background-color: var(--accent);
+  color: var(--royal);
 }
 
 nav.show a {
@@ -124,15 +124,30 @@ nav.show a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: linear-gradient(135deg, var(--sage), #1e2226);
+  background: linear-gradient(135deg, var(--darkblue) 0%, var(--royal) 70%);
   padding: 2rem 1rem;
   text-align: center;
-  color: var(--pink);
+  color: var(--white);
+}
+
+.hero h1 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--orange);
 }
 
 .hero-background {
   position: relative;
   max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -148,7 +163,7 @@ nav.show a {
   border: none;
   height: 6px;
   width: 100vw;
-  background: linear-gradient(to right, var(--pink), var(--white), var(--pink));
+  background: linear-gradient(to right, var(--orange), var(--white), var(--orange));
   opacity: 0.7;
   animation: slideIn 1s ease-in-out;
 }
@@ -156,8 +171,8 @@ nav.show a {
 /* === Buttons === */
 .btn-primary {
   padding: 0.75rem 1.5rem;
-  background-color: var(--pink);
-  color: var(--gunmetal);
+  background-color: var(--orange);
+  color: var(--darkblue);
   font-family: 'Overlock', cursive;
   border: none;
   border-radius: 5px;
@@ -174,8 +189,8 @@ nav.show a {
 
 /* === Footer === */
 footer {
-  background-color: var(--off_white);
-  color: var(--pink);
+  background-color: var(--darkblue);
+  color: var(--orange);
   text-align: center;
   padding: 0.5rem;
   margin-top: 2rem;
@@ -255,24 +270,31 @@ footer {
   nav {
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     position: static;
     transform: none;
     width: auto;
     display: flex !important;
     box-shadow: none;
-    background-color: transparent;
+    background-color: var(--orange);
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 
   nav a {
     border-bottom: none;
     margin: 0 1rem;
     padding: 0.5rem 1rem;
-    color: var(--white);
+    color: var(--off_white);
+    background: none;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
   }
 
   nav a:hover {
-    background-color: var(--white);
-    color: var(--gunmetal);
+    background-color: var(--off_white);
+    color: var(--orange);
   }
 
   .logo {
@@ -288,5 +310,9 @@ footer {
   .hero-logo {
     width: 65vw;
     max-width: 600px;
+  }
+
+  .menu-toggle {
+    display: none;
   }
 }

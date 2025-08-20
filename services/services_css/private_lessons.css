@@ -11,7 +11,7 @@
 .service-container h1 {
   font-family: 'Overlock Bold', cursive;
   font-size: 2.8rem;
-  color: var(--pink);
+  color: var(--orange);
   margin-bottom: 1.5rem;
 }
 
@@ -29,7 +29,7 @@
   height: auto;
   margin: 0 auto 2rem auto;
   border-radius: 8px;
-  box-shadow: 0 0 15px var(--pink);
+  box-shadow: 0 0 15px var(--orange);
 }
 
 .service-details {
@@ -39,7 +39,7 @@
 .service-details h2 {
   font-family: 'Overlock Bold', cursive;
   font-size: 2rem;
-  color: var(--pink);
+  color: var(--orange);
   margin-bottom: 1rem;
 }
 
@@ -65,7 +65,7 @@
 .service-pricing h2 {
   font-family: 'Overlock Bold', cursive;
   font-size: 2rem;
-  color: var(--pink);
+  color: var(--orange);
   margin-bottom: 1rem;
 }
 
@@ -79,7 +79,7 @@
 .service-signup h2 {
   font-family: 'Overlock Bold', cursive;
   font-size: 2rem;
-  color: var(--pink);
+  color: var(--orange);
   margin-bottom: 1rem;
 }
 
@@ -94,7 +94,7 @@
 
 .service-signup label {
   font-weight: 600;
-  color: var(--pink);
+  color: var(--orange);
 }
 
 .service-signup input,
@@ -110,7 +110,7 @@
 .service-signup button {
   font-family: 'Overlock Bold', cursive;
   font-size: 1.2rem;
-  background-color: var(--pink);
+  background-color: var(--orange);
   color: var(--gunmetal);
   border: none;
   padding: 12px;

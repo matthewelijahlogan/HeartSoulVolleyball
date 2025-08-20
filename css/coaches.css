@@ -21,8 +21,8 @@
 }
 
 .coach-card {
-  background-color: var(--gunmetal);
-  border: 2px solid var(--pink);
+  background-color: var(--royal);
+  border: 2px solid var(--orange);
   border-radius: 10px;
   padding: 1.5rem;
   max-width: 300px;
@@ -48,7 +48,7 @@
 .coach-card h3 {
   font-family: 'Overlock Bold', sans-serif;
   font-size: 1.6rem;
-  color: var(--pink);
+  color: var(--orange);
   margin-bottom: 0.5rem;
 }
 
