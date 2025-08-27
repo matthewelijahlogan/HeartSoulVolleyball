@@ -1,5 +1,6 @@
 /* css/styles.css */
 
+/* === Root Variables === */
 :root {
   --darkblue: #1e3a5f;
   --royal: #275dff;
@@ -10,31 +11,31 @@
   --accent: #FFD700;
 }
 
+/* === Reset === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* === Fonts === */
 @font-face {
   font-family: 'Overlock Bold';
   src: url('../fonts/Overlock-Black.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'Sedgwick Ave Display';
   src: url('../fonts/SedgwickAveDisplay-Regular.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'Overlock';
   src: url('../fonts/Overlock-Regular.ttf') format('truetype');
 }
 
+/* === Base Styles === */
 html, body {
   overflow-x: hidden;
 }
-
 
 body {
   font-family: 'Overlock', sans-serif;
@@ -44,10 +45,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
 }
 
+/* === Header & Nav === */
 header {
   width: 100%;
   background-color: var(--royal);
@@ -58,7 +59,7 @@ header {
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   position: relative;
-  text-align: center;
+  z-index: 1000;
 }
 
 .club-title {
@@ -69,6 +70,7 @@ header {
   animation: fadeSlideDown 1.2s ease-out;
 }
 
+/* Mobile hamburger */
 .menu-toggle {
   position: absolute;
   top: 3.5rem;
@@ -81,6 +83,7 @@ header {
   z-index: 1100;
 }
 
+/* Mobile Nav (hidden off-screen by default) */
 nav {
   position: absolute;
   top: 100%;
@@ -92,7 +95,6 @@ nav {
   width: 200px;
   box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
-  z-index: 1000;
 }
 
 nav.show {
@@ -152,8 +154,8 @@ nav.show a {
 }
 
 .hero-logo img {
-  max-width: 65%;    /* never exceed container width */
-  height: auto;       /* keep aspect ratio */
+  max-width: 65%;
+  height: auto;
   display: block;
   margin: 0 auto;
 }
@@ -262,57 +264,50 @@ footer {
   }
 }
 
+/* === Desktop Nav === */
 @media (min-width: 992px) {
-  .container {
-    padding: 3rem;
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .club-title {
+    margin: 0;
   }
 
   nav {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     position: static;
     transform: none;
-    width: auto;
+    flex-direction: row;
     display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background: none;
     box-shadow: none;
-    background-color: var(--orange);
-    margin: 0 auto;
-    left: 0;
-    right: 0;
+    width: auto;
   }
 
   nav a {
     border-bottom: none;
     margin: 0 1rem;
     padding: 0.5rem 1rem;
-    color: var(--off_white);
-    background: none;
+    color: var(--off-white);
     font-weight: bold;
     transition: background 0.2s, color 0.2s;
   }
 
   nav a:hover {
-    background-color: var(--off_white);
+    background-color: var(--off-white);
     color: var(--orange);
   }
 
-  .logo {
-    flex-direction: row;
-    gap: 1rem;
-  }
-
-  header {
-    flex-direction: row;
-    justify-content: space-between;
+  .menu-toggle {
+    display: none;
   }
 
   .hero-logo {
     width: 65vw;
     max-width: 600px;
-  }
-
-  .menu-toggle {
-    display: none;
   }
 }
