@@ -154,7 +154,7 @@ nav.show a {
 }
 
 .hero-logo img {
-  max-width: 65%;
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -239,11 +239,18 @@ footer {
   }
 
   .hero-logo {
-    width: 90vw;
-    max-width: none;
-    min-width: 100px;
+    width: 100%;         /* Make container full width */
+    max-width: 100%;      /* Let image fully scale */
+    min-width: unset;     /* Remove min-width restriction */
+  }
+
+  .hero-logo img {
+    width: 90%;           /* Let image take 90% of screen */
+    max-width: 100%;
+    height: auto;
   }
 }
+
 
 @media (min-width: 600px) and (max-width: 991px) {
   .container {
