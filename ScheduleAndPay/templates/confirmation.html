@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Confirmed</title>
+</head>
+<body>
+    <h2>✅ Reservation Confirmed!</h2>
+    <p>Your session at <strong>{{ slot }}</strong> has been reserved.</p>
+    <p>To finalize your booking, please send your payment via Venmo using the button below.</p>
+
+    <a href="{{ venmo_link }}" target="_blank">
+        <button>Pay via Venmo</button>
+    </a>
+
+    <p>We’ll confirm your spot once payment is received. Thank you!</p>
+</body>
+</html>

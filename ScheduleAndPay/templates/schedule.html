@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Schedule a Training Session</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Schedule a Training Session</h1>
+    <form method="POST">
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Phone</label>
+      <input type="text" name="phone">
+
+      <label>Date</label>
+      <input type="date" name="date" required>
+
+      <label>Time</label>
+      <input type="time" name="time" required>
+
+      <button type="submit">Reserve & Pay</button>
+    </form>
+  </div>
+</body>
+</html>
