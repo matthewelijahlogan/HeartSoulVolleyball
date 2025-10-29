@@ -1,0 +1,320 @@
+/* static/css/styles.css */
+
+/* === Root Variables === */
+:root {
+  --darkblue: #1e3a5f;
+  --royal: #275dff;
+  --charcoal: #757575;
+  --white: #FFFFFF;
+  --off-white: #F8F7F4;
+  --orange: #EBA41D;
+  --accent: #FFD700;
+}
+
+/* === Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Fonts === */
+@font-face {
+  font-family: 'Overlock Bold';
+  src: url('../fonts/Overlock-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sedgwick Ave Display';
+  src: url('../fonts/SedgwickAveDisplay-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Overlock';
+  src: url('../fonts/Overlock-Regular.ttf') format('truetype');
+}
+
+/* === Base Styles === */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Overlock', sans-serif;
+  background-color: var(--darkblue);
+  color: var(--white);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* === Header & Nav === */
+header {
+  width: 100%;
+  background-color: var(--royal);
+  color: var(--orange);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1000;
+}
+
+.club-title {
+  font-size: 2rem;
+  font-family: 'Overlock Bold', cursive;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  animation: fadeSlideDown 1.2s ease-out;
+}
+
+/* Mobile hamburger */
+.menu-toggle {
+  position: absolute;
+  top: 3.5rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--orange);
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* Mobile Nav (hidden off-screen by default) */
+nav {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateX(100%);
+  background-color: var(--orange);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+nav.show {
+  transform: translateX(0);
+}
+
+nav a {
+  color: var(--darkblue);
+  text-decoration: none;
+  padding: 1rem;
+  border-bottom: 1px solid var(--darkblue);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  background-color: var(--accent);
+  color: var(--royal);
+}
+
+nav.show a {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* === Hero Section === */
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: linear-gradient(135deg, var(--darkblue) 0%, var(--royal) 70%);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.hero h1 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--orange);
+}
+
+.hero-background {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-logo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* === Divider === */
+.section-divider {
+  border: none;
+  height: 6px;
+  width: 100vw;
+  background: linear-gradient(to right, var(--orange), var(--white), var(--orange));
+  opacity: 0.7;
+  animation: slideIn 1s ease-in-out;
+}
+
+/* === Buttons === */
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--orange);
+  color: var(--darkblue);
+  font-family: 'Overlock', cursive;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+/* === Footer === */
+footer {
+  background-color: var(--darkblue);
+  color: var(--orange);
+  text-align: center;
+  padding: 0.5rem;
+  margin-top: 2rem;
+}
+
+/* === Animations === */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* === Media Queries === */
+@media (max-width: 599px) {
+  header {
+    padding: 1rem;
+  }
+
+  nav {
+    width: 90%;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  h2, p {
+    text-align: center;
+  }
+
+  .section-divider {
+    height: 5px;
+  }
+
+  .hero-logo {
+    width: 100%;         /* Make container full width */
+    max-width: 100%;      /* Let image fully scale */
+    min-width: unset;     /* Remove min-width restriction */
+  }
+
+  .hero-logo img {
+    width: 90%;           /* Let image take 90% of screen */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+@media (min-width: 600px) and (max-width: 991px) {
+  .container {
+    padding: 2rem;
+  }
+
+  nav {
+    width: 250px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .hero-logo {
+    width: 50vw;
+    max-width: 500px;
+  }
+}
+
+/* === Desktop Nav === */
+@media (min-width: 992px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .club-title {
+    margin: 0;
+  }
+
+  nav {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    width: auto;
+  }
+
+  nav a {
+    border-bottom: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--off-white);
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  nav a:hover {
+    background-color: var(--off-white);
+    color: var(--orange);
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .hero-logo {
+    width: 65vw;
+    max-width: 600px;
+  }
+}

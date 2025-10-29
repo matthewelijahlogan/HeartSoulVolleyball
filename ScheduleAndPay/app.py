@@ -2,12 +2,22 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, url_for
 import smtplib
 from email.mime.text import MIMEText
+import os
 
-app = Flask(__name__)
+# --- Define base folder for paths ---
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# --- Initialize Flask with correct template and static folders ---
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, 'templates'),
+    static_folder=os.path.join(BASE_DIR, 'static')
+)
 
 # --- Create DB if not exists ---
 def init_db():
-    conn = sqlite3.connect('reservations.db')
+    db_path = os.path.join(BASE_DIR, 'reservations.db')
+    conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS reservations (
@@ -37,7 +47,8 @@ def schedule():
         date = request.form['date']
         time = request.form['time']
 
-        conn = sqlite3.connect('reservations.db')
+        db_path = os.path.join(BASE_DIR, 'reservations.db')
+        conn = sqlite3.connect(db_path)
         c = conn.cursor()
         c.execute('INSERT INTO reservations (name, email, phone, date, time) VALUES (?, ?, ?, ?, ?)',
                   (name, email, phone, date, time))
@@ -47,7 +58,7 @@ def schedule():
         # Send email notification
         send_email_notification(name, email, date, time)
 
-        # Redirect to Venmo
+        # Redirect to Venmo payment page
         return redirect(f"https://venmo.com/?txn=pay&audience=private&recipients=YourVenmoUsername&amount=50&note=Training+Session+on+{date}+{time}")
     
     return render_template('schedule.html')
@@ -68,4 +79,5 @@ def send_email_notification(name, email, date, time):
         smtp.send_message(msg)
 
 if __name__ == '__main__':
+    # Run app from anywhere
     app.run(debug=True)
