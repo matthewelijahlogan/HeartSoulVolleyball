@@ -1,83 +1,102 @@
-import sqlite3
-from flask import Flask, render_template, request, redirect, url_for
-import smtplib
+from fastapi import FastAPI, Request, Form
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+import json, os, datetime, smtplib
 from email.mime.text import MIMEText
-import os
 
-# --- Define base folder for paths ---
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = FastAPI()
 
-# --- Initialize Flask with correct template and static folders ---
-app = Flask(
-    __name__,
-    template_folder=os.path.join(BASE_DIR, 'templates'),
-    static_folder=os.path.join(BASE_DIR, 'static')
-)
+# Paths
+BASE_DIR = os.path.dirname(__file__)
+DB_PATH = os.path.join(BASE_DIR, "../db/bookings.json")
 
-# --- Create DB if not exists ---
-def init_db():
-    db_path = os.path.join(BASE_DIR, 'reservations.db')
-    conn = sqlite3.connect(db_path)
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS reservations (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            email TEXT,
-            phone TEXT,
-            date TEXT,
-            time TEXT
-        )
-    ''')
-    conn.commit()
-    conn.close()
+app.mount("/static", StaticFiles(directory="ScheduleAndPay/static"), name="static")
+templates = Jinja2Templates(directory="ScheduleAndPay/templates")
 
-init_db()
+# Hours of operation (editable)
+HOURS = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+         "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"]
 
-@app.route('/')
-def index():
-    return redirect(url_for('schedule'))
+def load_bookings():
+    if not os.path.exists(DB_PATH):
+        return {}
+    with open(DB_PATH, "r") as f:
+        return json.load(f)
 
-@app.route('/schedule', methods=['GET', 'POST'])
-def schedule():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
-        date = request.form['date']
-        time = request.form['time']
+def save_bookings(data):
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    with open(DB_PATH, "w") as f:
+        json.dump(data, f, indent=2)
 
-        db_path = os.path.join(BASE_DIR, 'reservations.db')
-        conn = sqlite3.connect(db_path)
-        c = conn.cursor()
-        c.execute('INSERT INTO reservations (name, email, phone, date, time) VALUES (?, ?, ?, ?, ?)',
-                  (name, email, phone, date, time))
-        conn.commit()
-        conn.close()
+def send_email(to_email, subject, body):
+    sender_email = "heartsoulvolleyball@gmail.com"
+    password = os.getenv("EMAIL_PASSWORD")  # store securely in .env
+    msg = MIMEText(body, "html")
+    msg["Subject"] = subject
+    msg["From"] = sender_email
+    msg["To"] = to_email
 
-        # Send email notification
-        send_email_notification(name, email, date, time)
-
-        # Redirect to Venmo payment page
-        return redirect(f"https://venmo.com/?txn=pay&audience=private&recipients=YourVenmoUsername&amount=50&note=Training+Session+on+{date}+{time}")
-    
-    return render_template('schedule.html')
-
-@app.route('/confirmation')
-def confirmation():
-    return render_template('confirmation.html')
-
-def send_email_notification(name, email, date, time):
-    msg = MIMEText(f'New reservation:\n\nName: {name}\nEmail: {email}\nDate: {date}\nTime: {time}')
-    msg['Subject'] = 'New Training Reservation'
-    msg['From'] = 'youremail@example.com'
-    msg['To'] = 'operator@example.com'
-
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.starttls()
-        smtp.login('youremail@example.com', 'yourpassword')
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(sender_email, password)
         smtp.send_message(msg)
 
-if __name__ == '__main__':
-    # Run app from anywhere
-    app.run(debug=True)
+@app.get("/", response_class=HTMLResponse)
+async def show_schedule(request: Request, week_offset: int = 0):
+    today = datetime.date.today() + datetime.timedelta(weeks=week_offset)
+    start_of_week = today - datetime.timedelta(days=today.weekday())
+    bookings = load_bookings()
+
+    week_days = []
+    for i in range(7):
+        day = start_of_week + datetime.timedelta(days=i)
+        str_day = day.strftime("%Y-%m-%d")
+        booked_slots = bookings.get(str_day, [])
+        available_slots = [h for h in HOURS if h not in booked_slots]
+        week_days.append({
+            "date": str_day,
+            "day_name": day.strftime("%A"),
+            "slots": available_slots
+        })
+
+    return templates.TemplateResponse("schedule.html", {
+        "request": request,
+        "week_days": week_days,
+        "week_offset": week_offset
+    })
+
+@app.post("/reserve", response_class=HTMLResponse)
+async def reserve_session(
+    request: Request,
+    name: str = Form(...),
+    email: str = Form(...),
+    phone: str = Form(...),
+    date: str = Form(...),
+    time: str = Form(...)
+):
+    bookings = load_bookings()
+    day_slots = bookings.get(date, [])
+    if time not in day_slots:
+        day_slots.append(time)
+    bookings[date] = day_slots
+    save_bookings(bookings)
+
+    slot = f"{date} at {time}"
+    venmo_link = "https://venmo.com/heartsoulvolleyball"
+
+    # Email both admin and user
+    subject = "Heart Soul Volleyball Training Reservation"
+    body = f"""
+        <h2>Reservation Confirmed</h2>
+        <p>{name}, your session for <strong>{slot}</strong> has been reserved!</p>
+        <p>Please complete your payment here: <a href="{venmo_link}">{venmo_link}</a></p>
+        <p>Thank you for booking with Heart Soul Volleyball!</p>
+    """
+    send_email(email, subject, body)
+    send_email("heartsoulvolleyball@gmail.com", "New Reservation", body)
+
+    return templates.TemplateResponse("confirmation.html", {
+        "request": request,
+        "slot": slot,
+        "venmo_link": venmo_link
+    })

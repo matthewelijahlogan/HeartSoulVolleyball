@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Edit Hours</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="admin-panel">
+    <h2>🕒 Edit Hours of Operation</h2>
+    <form method="POST">
+      <label for="new_hours">Enter hours separated by commas (e.g. 8:00 AM, 9:00 AM, 10:00 AM)</label>
+      <input type="text" name="new_hours" id="new_hours" value="{{ ', '.join(hours) }}" required>
+      <button type="submit">Save Hours</button>
+    </form>
+  </div>
+</body>
+</html>
