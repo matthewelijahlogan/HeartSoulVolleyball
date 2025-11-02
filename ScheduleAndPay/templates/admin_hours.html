@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin - Edit Hours</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta charset="UTF-8" />
+  <title>Edit Hours of Operation</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <style>
+    body { font-family: Poppins, sans-serif; background: #fafafa; padding: 40px; }
+    h1 { color: #444; }
+    form { margin-top: 20px; }
+    textarea { width: 100%; height: 120px; padding: 10px; border-radius: 6px; }
+    button { background: #0077ff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #005fcc; }
+  </style>
 </head>
 <body>
-  <div class="admin-panel">
-    <h2>🕒 Edit Hours of Operation</h2>
-    <form method="POST">
-      <label for="new_hours">Enter hours separated by commas (e.g. 8:00 AM, 9:00 AM, 10:00 AM)</label>
-      <input type="text" name="new_hours" id="new_hours" value="{{ ', '.join(hours) }}" required>
-      <button type="submit">Save Hours</button>
-    </form>
-  </div>
+  <h1>Admin: Edit Available Hours</h1>
+  <form method="post">
+    <label>Enter hours separated by commas:</label><br>
+    <textarea name="new_hours">{{ ", ".join(hours) }}</textarea><br><br>
+    <button type="submit">Save Hours</button>
+  </form>
+  <p style="margin-top:20px;">Current Hours:</p>
+  <ul>
+    {% for hour in hours %}
+      <li>{{ hour }}</li>
+    {% endfor %}
+  </ul>
 </body>
 </html>
