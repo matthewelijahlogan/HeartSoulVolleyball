@@ -1,16 +1,21 @@
+<!-- ScheduleAndPay/templates/confirmation.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Reservation Confirmed</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmed</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-  <div class="confirmation">
-    <h2>✅ Reservation Confirmed!</h2>
-    <p>Your session at <strong>{{ slot }}</strong> has been reserved.</p>
-    <a href="{{ venmo_link }}" target="_blank" class="button">Pay via Venmo</a>
-    <p>We’ll confirm your spot once payment is received. Thank you!</p>
-  </div>
+    <div class="confirmation">
+        <h1>Reservation Confirmed!</h1>
+        <p>Your training session is booked for:</p>
+        <h2>{{ slot }}</h2>
+        <p>Please complete your payment via Venmo:</p>
+        <a class="venmo-btn" href="{{ venmo_link }}" target="_blank">Pay on Venmo</a>
+        <p class="thanks">Thank you for training with Heart Soul Volleyball!</p>
+        <a class="back-btn" href="/">← Back to Schedule</a>
+    </div>
 </body>
 </html>

@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 # ========================================
 load_dotenv()
 app = FastAPI()
-app.add_middleware(SessionMiddleware, secret_key="super_secret_key")  # Change this!
+app.add_middleware(SessionMiddleware, secret_key="super_secret_key")  # Replace in production
 
 BASE_DIR = os.path.dirname(__file__)
 DB_PATH = os.path.join(BASE_DIR, "../db/bookings.json")
@@ -68,20 +68,14 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  # dev mode only
 GOOGLE_CLIENT_SECRETS = os.path.join(BASE_DIR, "credentials.json")
 GOOGLE_REDIRECT_URI = "http://localhost:8000/auth/callback"
 
-flow = Flow.from_client_secrets_file(
-    GOOGLE_CLIENT_SECRETS,
-    scopes=["https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri=GOOGLE_REDIRECT_URI
-)
-
-ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "heartsoulvolleyballtraining@gmail.com")
 
 # ========================================
 # ROUTES
 # ========================================
-
 @app.get("/", response_class=HTMLResponse)
 async def show_schedule(request: Request, week_offset: int = 0):
+    """Show weekly schedule with available hours."""
     today = datetime.date.today() + datetime.timedelta(weeks=week_offset)
     start_of_week = today - datetime.timedelta(days=today.weekday())
     bookings = load_bookings()
@@ -105,6 +99,9 @@ async def show_schedule(request: Request, week_offset: int = 0):
         "user": request.session.get("user")
     })
 
+# ========================================
+# BOOKING FLOW
+# ========================================
 @app.post("/reserve", response_class=HTMLResponse)
 async def reserve_session(
     request: Request,
@@ -114,6 +111,7 @@ async def reserve_session(
     date: str = Form(...),
     time: str = Form(...)
 ):
+    """Reserve a session and send confirmation emails."""
     bookings = load_bookings()
     day_slots = bookings.get(date, [])
     if time not in day_slots:
@@ -124,12 +122,12 @@ async def reserve_session(
     slot = f"{date} at {time}"
     venmo_link = "https://venmo.com/heartsoulvolleyball"
 
-    # Send confirmation emails
     subject = "Heart Soul Volleyball Training Reservation"
     body = f"""
         <h2>Reservation Confirmed</h2>
         <p>{name}, your session for <strong>{slot}</strong> has been reserved!</p>
         <p>Please complete your payment here: <a href="{venmo_link}">{venmo_link}</a></p>
+        <p>Thank you for booking with Heart Soul Volleyball!</p>
     """
     send_email(email, subject, body)
     send_email(ADMIN_EMAIL, "New Reservation", body)
@@ -143,45 +141,60 @@ async def reserve_session(
 # ========================================
 # GOOGLE OAUTH LOGIN / LOGOUT
 # ========================================
-
 @app.get("/login")
-def login():
-    authorization_url, state = flow.authorization_url()
+def login(request: Request):
+    """Start Google OAuth login."""
+    flow = Flow.from_client_secrets_file(
+        GOOGLE_CLIENT_SECRETS,
+        scopes=["openid", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"],
+        redirect_uri=GOOGLE_REDIRECT_URI
+    )
+    authorization_url, state = flow.authorization_url(prompt="consent")
+    request.session["state"] = state
     return RedirectResponse(url=authorization_url)
 
 @app.get("/auth/callback")
 def auth_callback(request: Request):
+    """Handle OAuth callback and store user info in session."""
+    flow = Flow.from_client_secrets_file(
+        GOOGLE_CLIENT_SECRETS,
+        scopes=["openid", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"],
+        redirect_uri=GOOGLE_REDIRECT_URI
+    )
     flow.fetch_token(authorization_response=str(request.url))
-    credentials = flow.credentials
-    token = credentials.id_token
-    info = id_token.verify_oauth2_token(token, grequests.Request())
-    user_email = info.get("email")
+    creds = flow.credentials
+    idinfo = id_token.verify_oauth2_token(creds.id_token, grequests.Request())
+    email = idinfo.get("email")
+    name = idinfo.get("name")
 
-    if user_email == ADMIN_EMAIL:
-        request.session["user"] = user_email
+    request.session["user"] = {"email": email, "name": name}
+
+    if email == ADMIN_EMAIL:
         return RedirectResponse(url="/admin/hours")
-    else:
-        return HTMLResponse("<h3>Access denied. Not an authorized admin.</h3>")
+    return RedirectResponse(url="/")
 
 @app.get("/logout")
 def logout(request: Request):
+    """Log out user and clear session."""
     request.session.clear()
     return RedirectResponse(url="/")
 
 # ========================================
-# ADMIN HOURS EDITOR (Protected)
+# ADMIN HOURS EDITOR
 # ========================================
 @app.get("/admin/hours", response_class=HTMLResponse)
 async def edit_hours(request: Request):
+    """Admin-only page to edit operating hours."""
     user = request.session.get("user")
-    if not user:
+    if not user or user.get("email") != ADMIN_EMAIL:
         return RedirectResponse(url="/login")
     return templates.TemplateResponse("admin_hours.html", {"request": request, "hours": HOURS, "user": user})
 
 @app.post("/admin/hours", response_class=HTMLResponse)
 async def update_hours(request: Request, new_hours: str = Form(...)):
+    """Admin updates available hours."""
     user = request.session.get("user")
-    if not user:
+    if not user or user.get("email") != ADMIN_EMAIL:
         return RedirectResponse(url="/login")
     global HOURS
     HOURS = [h.strip() for h in new_hours.split(",") if h.strip()]

@@ -1,39 +1,56 @@
+<!-- ScheduleAndPay/templates/schedule.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Schedule a Training Session</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Soul Volleyball | Book Training</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-<div class="container">
-  <h1>🏐 Schedule a Training Session</h1>
-  <div class="week-nav">
-      <a href="/?week_offset={{ week_offset - 1 }}">⬅️ Previous</a>
-      <a href="/?week_offset={{ week_offset + 1 }}">Next ➡️</a>
-  </div>
-
-  <div class="week-grid">
-    {% for day in week_days %}
-      <div class="day-card">
-        <h3>{{ day.day_name }}</h3>
-        <p>{{ day.date }}</p>
-        {% for slot in day.slots %}
-          <form method="POST" action="/reserve">
-            <input type="hidden" name="date" value="{{ day.date }}">
-            <input type="hidden" name="time" value="{{ slot }}">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="text" name="phone" placeholder="Your Phone">
-            <button type="submit">{{ slot }}</button>
-          </form>
-        {% endfor %}
-        {% if day.slots|length == 0 %}
-          <p class="full">All sessions booked!</p>
+    <header>
+        <h1>Heart Soul Volleyball Training</h1>
+        {% if user %}
+            <p class="welcome">Welcome, {{ user.name }} | <a href="/logout">Logout</a></p>
+        {% else %}
+            <a class="login-btn" href="/login">Login with Google</a>
         {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-</div>
+    </header>
+
+    <main>
+        <h2>Select a Training Slot</h2>
+
+        <div class="week-nav">
+            <a href="/?week_offset={{ week_offset - 1 }}">&laquo; Previous Week</a>
+            <span>Week of {{ week_days[0].date }}</span>
+            <a href="/?week_offset={{ week_offset + 1 }}">Next Week &raquo;</a>
+        </div>
+
+        <div class="schedule-grid">
+            {% for day in week_days %}
+                <div class="day-card">
+                    <h3>{{ day.day_name }}<br><small>{{ day.date }}</small></h3>
+                    {% if day.slots %}
+                        {% for slot in day.slots %}
+                            <form action="/reserve" method="post">
+                                <input type="hidden" name="date" value="{{ day.date }}">
+                                <input type="hidden" name="time" value="{{ slot }}">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                                <input type="email" name="email" placeholder="Your Email" required>
+                                <input type="tel" name="phone" placeholder="Your Phone" required>
+                                <button type="submit">{{ slot }}</button>
+                            </form>
+                        {% endfor %}
+                    {% else %}
+                        <p class="full">All slots booked</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>© {{ now().year }} Heart Soul Volleyball — Powered by DaVinci’s Touch</p>
+    </footer>
 </body>
 </html>
