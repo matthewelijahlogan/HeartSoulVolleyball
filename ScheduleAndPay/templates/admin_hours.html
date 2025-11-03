@@ -1,4 +1,5 @@
 <!-- ScheduleAndPay/templates/admin_hours.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +21,11 @@
             <button type="submit">Save Changes</button>
         </form>
         <a href="/" class="back-btn">← Back to Schedule</a>
+
+        <section class="default-hours">
+            <h3>Default Hours Reference:</h3>
+            <p>{{ ', '.join(DEFAULT_HOURS) }}</p>
+        </section>
     </main>
 </body>
 </html>
