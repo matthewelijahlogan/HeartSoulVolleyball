@@ -190,13 +190,38 @@ nav.show a {
 }
 
 /* === Footer === */
+/* Footer styling */
 footer {
   background-color: var(--darkblue);
   color: var(--orange);
   text-align: center;
-  padding: 0.5rem;
-  margin-top: 2rem;
+  padding: 2rem 1rem;       /* more padding for spacing */
+  display: flex;
+  flex-direction: column;   /* stack children vertically */
+  align-items: center;
+  gap: 1rem;                /* space between elements */
 }
+
+/* Shopify store button */
+footer .shop-link {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+footer .shop-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Optional: adjust copyright text */
+footer .copyright {
+  font-size: 0.9rem;
+  color: var(--off-white);
+}
+
 
 /* === Animations === */
 @keyframes fadeSlideDown {
@@ -524,3 +549,4 @@ h1 {
   background: var(--accent);
   box-shadow: 0 0 20px var(--accent);
 }
+
