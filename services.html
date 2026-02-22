@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Services | Heart & Soul Training</title>
+  <title>Private Lessons | Heart & Soul Training</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/services.css" />
+  <link rel="icon" href="img/favicon.ico" />
 </head>
 <body>
   <header>
@@ -13,7 +14,7 @@
     <nav id="dropdownMenu">
       <a href="index.html">Home</a>
       <a href="coaches.html">Coaches</a>
-      <a href="services.html" class="active">Services</a>
+      <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
@@ -26,26 +27,124 @@
         <img src="img/club_logo.png" alt="Club Logo" />
       </div>
 
-      <div class="container">
-        <div class="hero-text">
-          <h1>Our Services</h1>
-          <p>Whether you're just starting out or training to go to the collegiate level, we offer programs tailored to every athlete's journey.</p>
-        </div>
+      <div class="container service-container">
+        <h1>Private Lessons</h1>
 
-        <div class="service-cards">
-          <a href="services/private_lessons.html" class="service-card">
-            <img src="img/private_lessons_placeholder.png" alt="Private Lessons" />
-            <h3>Private Lessons</h3>
-            <p>One-on-one training focused on individual skill development, technique refinement, and performance.</p>
-          </a>
-          <!--  Commented out the clinics.html
-      
-            <a href="services/clinics.html" class="service-card">
-            <img src="img/clinics_placeholder.png" alt="Clinics & Camps" />
-            <h3>Clinics & Camps</h3>
-            <p>Seasonal events focused on specific skills like setting, hitting, and defense with elite instruction.</p>
-          </a>  -->
-        </div>
+        <section class="service-description">
+          <p>
+            Sign up for private lessons with our head coach Jessica. These one-on-one sessions are designed to focus on individual skills, technique improvement, and personalized training plans.
+          </p>
+          <p>
+            Offer Beginner starting at age 6 (boys and girls) through collegiate level athletes.
+          </p>
+          <img src="img/bump.jpg" alt="Private Lessons" />
+        </section>
+
+        <section class="service-details">
+          <h2>What We Offer</h2>
+          <ul>
+            <li>- Basic skills development</li>
+            <li>- Strength and conditioning specific to volleyball</li>
+            <li>- Increase court awareness</li>
+            <li>- Increase knowledge of game and communication skills</li>
+            <li>- Develop leadership qualities</li>
+            <li>- Learn the importance of sportsmanship and valuable teammate</li>
+            <li>- Fine tune</li>
+            <li>- Get extra reps</li>
+          </ul>
+        </section>
+
+        <section class="service-pricing">
+          <h2>Pricing</h2>
+          <p>For 1 athlete: $65/lesson</p>
+          <p>For 2 athletes: $75/lesson</p>
+          <p>For Teams: $150/lesson</p>
+        </section>
+
+        <section class="service-signup">
+          <h2>Sign Up</h2>
+          <form
+            class="contact-form"
+            action="https://formsubmit.co/jlcvb20@gmail.com"
+            method="POST"
+            novalidate
+          >
+            <!-- Honeypot to block bots -->
+            <input type="text" name="_honey" style="display:none" />
+
+            <!-- Disable CAPTCHA -->
+            <input type="hidden" name="_captcha" value="false" />
+
+            <!-- Redirect after submit -->
+            <input
+              type="hidden"
+              name="_next"
+              value="/Heart-Soul/thankyou.html"
+            />
+
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your full name"
+              required
+            />
+
+            <label for="age">Age</label>
+            <input
+              type="text"
+              id="age"
+              name="age"
+              placeholder="Your age"
+              required
+            />
+
+            <label for="school">School</label>
+            <input
+              type="text"
+              id="school"
+              name="school"
+              placeholder="(optional)"
+            />
+
+            <label for="position">Position</label>
+            <input
+              type="text"
+              id="position"
+              name="position"
+              placeholder="(optional)"
+            />
+
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+            />
+
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="(optional)"
+            />
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Write your message here..."
+              required
+            ></textarea>
+
+            <button type="submit" class="btn-primary">Send Message</button>
+          </form>
+        </section>
       </div>
     </div>
   </main>

@@ -1,77 +1,139 @@
-/* services.css */
+/* services/services_css/private_lessons.css */
 
-.services-section {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 0 1rem;
+.service-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 0 0rem;
+  color: var(--white);
   text-align: center;
-  color: var(--white);
 }
 
-.services-section h2 {
-  font-family: 'Bangers', cursive;
-  font-size: 2.5rem;
+.service-container h1 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 2.8rem;
   color: var(--orange);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.services-section .intro {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: var(--white);
+.service-description p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.service-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
-
-.service-card {
-  background-color: var(--gunmetal);
-  border: 2px solid var(--orange);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.service-description img {
   display: block;
-  text-decoration: none;
-  color: inherit;
+  max-width: 50%;
+  height: auto;
+  margin: 0 auto 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 0 15px var(--orange);
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-  border-color: var(--accent);
+.service-details {
+  margin-bottom: 2rem;
 }
 
-.service-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 6px;
+.service-details h2 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 2rem;
+  color: var(--orange);
   margin-bottom: 1rem;
 }
 
-.service-card h3 {
-  font-family: 'Overlock Bold', sans-serif;
-  font-size: 1.6rem;
-  color: var(--orange);
-  margin-bottom: 0.5rem;
+.service-details ul {
+  list-style: none;
+  padding-left: 0;
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.1rem;
+  color: var(--white);
 }
 
-.service-card p {
+.service-details ul li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.service-pricing {
+  margin-bottom: 2rem;
+}
+
+.service-pricing h2 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 2rem;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+.service-pricing p {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+  color: var(--white);
+}
+
+.service-signup h2 {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 2rem;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+.service-signup form {
+  max-width: 400px;
+  margin: 0 auto 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.service-signup label {
+  font-weight: 600;
+  color: var(--orange);
+}
+
+.service-signup input,
+.service-signup textarea {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--darkblue);
+  font-family: 'Overlock', cursive;
   font-size: 1rem;
+  resize: vertical;
+}
+
+.service-signup button {
+  font-family: 'Overlock Bold', cursive;
+  font-size: 1.2rem;
+  background-color: var(--orange);
+  color: var(--darkblue);
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.service-signup button:hover {
+  background-color: var(--accent);
   color: var(--white);
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .services-section h2 {
-    font-size: 2rem;
+  .service-description img {
+    max-width: 80%;
   }
 
-  .service-card {
-    padding: 1rem;
+  .service-details ul,
+  .service-signup form {
+    max-width: 100%;
+    padding: 0 1rem;
   }
 }
